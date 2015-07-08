@@ -72,15 +72,7 @@
       self.chart1Config.series[0] = {
           color: '#96C0EE',
           data: null,
-          name: 'Rating Timeseries for ' + self.show.name,
-          marker: {
-              states: {
-                  hover: {
-                      enabled: true
-                  }
-              },
-              symbol: 'url(http://highcharts.com/demo/gfx/sun.png)'
-          }
+          name: 'Rating Timeseries for ' + show
       };
 
       self.chart2Config = angular.copy(chartConfig);
@@ -88,7 +80,7 @@
       self.chart2Config.series[0] = {
           color: '#33DFB6',
           data: null,
-          name: 'Rating Average for ' + self.show.name
+          name: 'Rating Average for ' + show
       };
 
       getRatings(self.chartPeriod);
