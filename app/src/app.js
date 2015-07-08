@@ -1,10 +1,11 @@
 angular.module('parrot', ['ngMaterial', 'ui.router', 'ngResource', 'highcharts-ng'])
-	.config(function($mdThemingProvider, $stateProvider){
+	.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider){
 
 		$mdThemingProvider.theme('default')
 			.primaryPalette('blue-grey')
 			.accentPalette('red');
 
+		$urlRouterProvider.otherwise('/shows');
 		$stateProvider
 			.state('parrot', {
 				url: '/',
