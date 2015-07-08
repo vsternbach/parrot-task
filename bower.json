@@ -1,0 +1,17 @@
+{
+  "name": "parrot-task",
+  "version": "0.0.0",
+  "authors": [
+    "vlads@similarweb.com"
+  ],
+  "license": "",
+  "private": false,
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-material": "~0.9.8",
+    "angular-resource": "~1.4.2",
+    "highcharts-ng": "~0.0.8",
+    "angular-ui-router": "~0.2.15"
+  },
+  "devDependencies": {}
+}

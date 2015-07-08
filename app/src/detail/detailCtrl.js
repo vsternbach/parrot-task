@@ -142,21 +142,21 @@
               height: 200
           },
           func: function (chart) { // on complete
-              var xAxis = chart.xAxis[0],
-                  yAxis = chart.yAxis[0],
-                  top =  170,
-                  height = 22,
-                  options = {
-                      fill: '#F5F8FF'
-                  },
-                  start = 45;
-
-              chart.renderer.rect(
-                  start,
-                  top,
-                  xAxis.len-40,
-                  height
-              ).attr(options).add();
+              //var xAxis = chart.xAxis[0],
+              //    yAxis = chart.yAxis[0],
+              //    top =  170,
+              //    height = 22,
+              //    options = {
+              //        fill: '#F5F8FF'
+              //    },
+              //    start = 45;
+			  //
+              //chart.renderer.rect(
+              //    start,
+              //    top,
+              //    xAxis.len-40,
+              //    height
+              //).attr(options).add();
 
           }
       };
