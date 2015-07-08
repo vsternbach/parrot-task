@@ -2,27 +2,46 @@
 
   angular
        .module('parrot')
-       .controller('listCtrl', ['$sce', 'seriesList', '$resource', '$log', listCtrl]);
+       .controller('listCtrl', ['dataResource', listCtrl]);
 
-  function listCtrl($sce, seriesList, $resource, $log) {
+  function listCtrl(dataResource) {
       var self = this;
 
+      self.itemsPerPage = 10;
+      self.currentPage = 0;
+
       self.shows = [];
-      self.selected = null;
-      seriesList.get().$promise.then(function(shows){
+      self.selectedItem = null;
+      self.querySearch = querySearch;
+      self.searchTextChange = searchTextChange;
+      self.selectedItemChange = selectedItemChange;
+
+      dataResource.shows.get().$promise.then(function(shows){
+          self.totalPages = Math.ceil(shows.length/self.itemsPerPage) - 1;
+          self.pageRange = Array.apply(null, {length: self.totalPages + 1}).map(Number.call, Number);
+
           angular.forEach(shows, function (show) {
-              $resource('http://api.tvmaze.com/singlesearch/shows?q='+show).get().$promise.then(function(data){
-                  data.desc = $sce.trustAsHtml(data.summary);
+              dataResource.showInfo.get({show: show}).$promise.then(function(data){
                   self.shows.push(data);
               })
           })
       });
-      self.simulateQuery = false;
-      self.isDisabled = false;
-      self.selectedItem = null;
-      self.querySearch = querySearch;
-      self.selectedItemChange = selectedItemChange;
-      self.searchTextChange = searchTextChange;
+
+      // ******************************
+      // Pagination methods
+      // ******************************
+
+      self.prevPage = function() {
+          if (self.currentPage > 0) {
+              self.currentPage--;
+          }
+      };
+
+      self.nextPage = function() {
+          if (self.currentPage < self.totalPages) {
+              self.currentPage++;
+          }
+      };
 
       // ******************************
       // Internal methods
@@ -32,14 +51,13 @@
           return query ? self.shows.filter(createFilterFor(query)) : self.shows;
       }
 
-      function searchTextChange(text) {
-          $log.info('Text changed to ' + text);
-      }
-
       function selectedItemChange(item) {
-          $log.info('Item changed to ' + JSON.stringify(item));
+          self.filter = item ? {name: item.name} : null;
       }
 
+      function searchTextChange(text) {
+          //$log.info('Text changed to ' + text);
+      }
 
       /**
        * Create filter function for a query string

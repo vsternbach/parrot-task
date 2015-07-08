@@ -1,15 +1,15 @@
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings">
+        <md-button ng-if="!ctrl.back" class="md-icon-button" aria-label="Menu">
             <md-icon md-svg-icon="assets/svg/menu.svg"></md-icon>
+        </md-button>
+        <md-button ng-if="ctrl.back" ui-sref="list" class="md-icon-button" aria-label="Back">
+            <md-icon md-svg-icon="assets/svg/back.svg"></md-icon>
         </md-button>
         <h2>
             <span>{{ctrl.title}}</span>
         </h2>
         <span flex=""></span>
-        <md-button class="md-icon-button" aria-label="More">
-            <md-icon md-svg-icon="assets/svg/share.svg"></md-icon>
-        </md-button>
     </div>
 </md-toolbar>
 <md-content>
