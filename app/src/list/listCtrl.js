@@ -53,6 +53,7 @@
 
       function selectedItemChange(item) {
           self.filter = item ? {name: item.name} : null;
+          self.currentPage = 0;
       }
 
       function searchTextChange(text) {
