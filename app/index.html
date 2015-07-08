@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <title>Angular Material - Starter App</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
+</head>
+
+<body ng-app="parrot" layout="column">
+<ui-view></ui-view>
+
+<script src="http://code.highcharts.com/adapters/standalone-framework.js"></script>
+<script src="http://code.highcharts.com/highcharts.src.js"></script>
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.js"></script>
+<script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="./bower_components/angular-aria/angular-aria.js"></script>
+<script src="./bower_components/angular-material/angular-material.js"></script>
+<script src="./bower_components/angular-resource/angular-resource.js"></script>
+<script src="./bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+
+<script type="text/javascript">
+
+    angular
+            .module('parrot', ['ngMaterial', 'ui.router', 'ngResource', 'highcharts-ng'])
+            .config(function($mdThemingProvider, $mdIconProvider, $stateProvider){
+
+                $mdIconProvider
+                        .defaultIconSet("./assets/svg/avatars.svg", 128)
+                        .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+                        .icon("share"      , "./assets/svg/share.svg"       , 24)
+                        .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+                        .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+                        .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+                        .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+
+                $mdThemingProvider.theme('default')
+                        .primaryPalette('blue-grey')
+                        .accentPalette('red');
+
+                $stateProvider
+                        .state('parrot', {
+                            url: '/',
+                            abstract: true,
+                            templateUrl: 'src/nav/nav.html',
+                            controller: 'navCtrl',
+                            controllerAs: 'ctrl'
+                        })
+                        .state('parrot.list', {
+                            url: 'list',
+                            controller: 'listCtrl',
+                            controllerAs: 'ctrl',
+                            templateUrl: 'src/list/list.html'
+                        })
+                        .state('parrot.detail', {
+                            url: 'show/:show',
+                            controller: 'detailCtrl',
+                            controllerAs: 'ctrl',
+                            templateUrl: 'src/detail/detail.html'
+                        })
+
+            });
+
+</script>
+<script src="./src/resources.js"></script>
+<script src="./src/nav/navCtrl.js"></script>
+<script src="./src/list/listCtrl.js"></script>
+<script src="./src/detail/detailCtrl.js"></script>
+</body>
+</html>

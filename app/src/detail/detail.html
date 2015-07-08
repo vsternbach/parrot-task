@@ -1,0 +1,55 @@
+<md-whiteframe class="md-whiteframe-z1" layout="column" layout-margin layout-padding>
+    <div flex layout="row">
+        <div flex="20"><img ng-src="{{ctrl.show.image.medium}}" width="80%"></div>
+        <div flex layout="column">
+            <div flex layout="row">
+                <div flex="60" layout="column">
+                    <div class="md-title title-parrot">{{ctrl.show.name}}</div>
+                    <div flex layout="row" layout-align="start center">
+                        <md-chips ng-model="ctrl.show.genres" readonly="true"></md-chips>
+                        <div>{{ctrl.show.network.name}}</div>
+                    </div>
+                    <div flex layout="row">
+                        {{ctrl.show.summary}}
+                    </div>
+                </div>
+                <div flex layout="column" class="md-chips">
+                    <div>Total Episodes</div>
+                    <div class="md-chip">24</div>
+                </div>
+                <div flex layout="column" class="md-chips">
+                    <div>Total Seasons</div>
+                    <div class="md-chip">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-whiteframe>
+<md-whiteframe class="md-whiteframe-z1" layout="row" layout-margin layout-padding>
+    <div flex layout="column">
+        <h2 class="title-parrot">Rating Timeseries for {{ctrl.show.name}}</h2>
+        <div layout="row">
+            <md-select style="padding: 0 0 5px 0;" flex="20" placeholder="Chart type" ng-model="ctrl.chart1Type">
+                <md-option value="area">Area</md-option>
+                <md-option value="column">Column</md-option>
+                <md-option value="line">Line</md-option>
+            </md-select>
+            <span flex></span>
+            <md-select style="padding: 0 0 5px 0;" flex="20" placeholder="Time period" ng-model="ctrl.chart1Period">
+                <md-option value="7">Last 7 days</md-option>
+                <md-option value="14">Last 14 days</md-option>
+                <md-option value="30">Last 30 days</md-option>
+            </md-select>
+        </div>
+        <highchart config="ctrl.chart1Config"></highchart>
+    </div>
+    <div flex layout="column">
+        <h2 class="title-parrot">Rating Average for {{ctrl.show.name}}</h2>
+        <md-select style="padding: 0 0 5px 0;" flex placeholder="Chart type" ng-model="ctrl.chart2Type">
+            <md-option value="area">Area</md-option>
+            <md-option value="column">Column</md-option>
+            <md-option value="line">Line</md-option>
+        </md-select>
+        <highchart config="ctrl.chart2Config"></highchart>
+    </div>
+</md-whiteframe>
